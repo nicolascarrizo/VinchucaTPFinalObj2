@@ -1,18 +1,21 @@
 package vinchuca;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Muestra {
 	
 	private List<Opinion> opiniones = new ArrayList<Opinion>();
+	private Set<ZonaDeCobertura> zonas = new HashSet<ZonaDeCobertura>();
 	private Foto foto;
 	private EstadoMuestra estadoMuestra;
 	private Ubicacion ubicacion;
 	
 
-	public Muestra(String especie, Usuario usuario, Foto foto, Ubicacion ubicacion) {
+	public Muestra(String especie, Usuario usuario, Foto foto, Ubicacion ubicacion, BusquedaDeMuestras recoleccionDeMuestras, Zonas zonas) {
 		super();
 		
 		//El constructor de opinion nos agrega dicha opinion a la lista opiniones, 
@@ -25,9 +28,41 @@ public class Muestra {
 		EstadoMuestra estado = new EstadoEnVotacion();
 		this.setEstadoMuestra(estado);
 		
+		recoleccionDeMuestras.nuevaMuestra(this);
+		
+		//me fijo a que zona va a pertener la muestra. DATO: Se creo la clase Zonas
+		// para yo saber a que zona va a pertenecer la muestra. Por eso cada vez que se crea una nueva ZonaDeCobertura
+		// la agrego a mi lista de Zonas en donde tengo las zonas totales. 
+		
+		for(ZonaDeCobertura zona: zonas.getZonas()) {
+			this.agregarZonaSiPertenece(zona);
+		}
+		
+		this.notificarAZonaDeCracionNuevaMuestra();
+		
 		
 	}
 	
+	private void notificarAZonaDeCracionNuevaMuestra() {
+		for(ZonaDeCobertura zonaDeCobertura : this.getZonas()) {
+			zonaDeCobertura.notificarCreacionDeMuestra(this);
+		}
+		
+	}
+
+	private void agregarZonaSiPertenece(ZonaDeCobertura zona) {
+		if(this.muestraPerteneceAZona(zona)) {
+			this.getZonas().add(zona);
+		}
+		
+	}
+
+	public boolean muestraPerteneceAZona(ZonaDeCobertura zona) {
+		//si es menor o igual al radio, significa que esa ubicacion se encuentra dentro del radio
+		// de zona de cobertura
+		return this.getUbicacion().distanciaEntre(zona.getUbicacion()) <= zona.getRadio();
+	}
+
 	public void agregarOpinion(Opinion opinion) {
 		//Al agregar una opinion, antes de agregarla chequeo que esta opinion vaya a cambiar el estado o no.
 		this.chequearEstadoDeMuestra(opinion);
@@ -40,11 +75,18 @@ public class Muestra {
 		if(opinion.getRangoUsuario().verificaMuestra(this.getOpiniones(), opinion.getEspecie())) {
 			EstadoMuestra estadoMuestra = new EstadoVerificada();
 			this.setEstadoMuestra(estadoMuestra);
-			
+			this.notificarAZonaDeCreacionVerificacion();
 		}
 		
 	}
 	
+	private void notificarAZonaDeCreacionVerificacion() {
+		for(ZonaDeCobertura zonas: this.getZonas()) {
+			zonas.notificarVerificacionDeMuestra(this);
+		}
+		
+	}
+
 	public void recibirOpinion(Usuario usuario, String especie) {
 		if(!this.estaVerificada() && !this.usuariosQueOpinaron().contains(usuario)) {
 			usuario.getTipoDeRango().opinar(this, usuario, especie);
@@ -103,6 +145,19 @@ public class Muestra {
 
 	public EstadoMuestra getEstadoMuestra() {
 		return estadoMuestra;
+	}
+	
+	public Set<ZonaDeCobertura> getZonas() {
+		return zonas;
+	}
+	
+
+	public Foto getFoto() {
+		return foto;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
 	}
 
 	public void setEstadoMuestra(EstadoMuestra estadoMuestra) {
