@@ -22,9 +22,9 @@ public class Usuario {
 		}
 	}
 	
-	public void crearMuestra(String especie, Foto foto, Ubicacion ubicacion) {
+	public void crearMuestra(String especie, Foto foto, Ubicacion ubicacion, BusquedaDeMuestras recoleccionDeMuestras, Zonas zonas) {
 		this.verificarRango();
-		Muestra muestra = new Muestra(especie, this, foto, ubicacion); 
+		Muestra muestra = new Muestra(especie, this, foto, ubicacion, recoleccionDeMuestras, zonas); 
 		this.getMuestrasCreadas().add(muestra);
 	}
 	
@@ -99,6 +99,13 @@ public class Usuario {
 	public List<Opinion> getOpiniones() {
 		return opiniones;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
+	
+	
 	
 	
 	

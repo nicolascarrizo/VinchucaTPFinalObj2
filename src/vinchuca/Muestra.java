@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class Muestra {
 	
+	
 	private List<Opinion> opiniones = new ArrayList<Opinion>();
 	private Set<ZonaDeCobertura> zonas = new HashSet<ZonaDeCobertura>();
 	private Foto foto;

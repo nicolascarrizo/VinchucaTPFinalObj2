@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class ZonaDeCobertura {
 	
+	
 	private String nombre;
 	private Ubicacion ubicacion; //epicentro
 	private double radio;

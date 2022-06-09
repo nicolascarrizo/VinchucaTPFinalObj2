@@ -5,7 +5,7 @@ public class Organizacion {
 		
 		private Ubicacion ubicacion;
 		private String tipoOrganizacion;
-		private Integer cantidadTrabajadores;
+		private int cantidadTrabajadores;
 		
 		
 		
@@ -13,7 +13,7 @@ public class Organizacion {
 		private FuncionalidadExterna funcionalidadVerificacion;
 		
 		
-		public Organizacion(Ubicacion ubicacion, String tipoOrganizacion, Integer cantidadTrabajadores) {
+		public Organizacion(Ubicacion ubicacion, String tipoOrganizacion, int cantidadTrabajadores) {
 			super();
 			this.ubicacion = ubicacion;
 			this.tipoOrganizacion = tipoOrganizacion;
@@ -55,7 +55,7 @@ public class Organizacion {
 		}
 
 
-		public Integer getCantidadTrabajadores() {
+		public int getCantidadTrabajadores() {
 			return cantidadTrabajadores;
 		}
 		
