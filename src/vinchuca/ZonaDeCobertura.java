@@ -65,7 +65,19 @@ public class ZonaDeCobertura {
 		return radio;
 	}
 	
-	
+	public Set<ZonaDeCobertura> zonasSolapadas(Zonas zonas){
+        Set<ZonaDeCobertura> zonasSolapadas = new HashSet<ZonaDeCobertura>();
+        for(ZonaDeCobertura zona: zonas.getZonas()) {
+            if(this.solapaCon(zona)) {
+                zonasSolapadas.add(zona);
+            }
+        }
+        return zonasSolapadas;
+    }
+
+    private boolean solapaCon(ZonaDeCobertura zona) {
+        return ( this.getUbicacion().distanciaEntre(zona.getUbicacion()) < (this.getRadio() + zona.getRadio()) );
+    }
 	
 	
 	
