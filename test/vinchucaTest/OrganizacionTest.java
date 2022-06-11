@@ -48,6 +48,5 @@ public class OrganizacionTest {
 		organizacion.registrarseAZona(zonaDeCobertura);
 		verify(zonaDeCobertura).registrarA(organizacion);
 	}
-
-
+	
 }

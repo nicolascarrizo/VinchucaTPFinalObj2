@@ -91,6 +91,35 @@ public class BusquedaDeMuestraTest {
 	}
 	
 	@Test
+	public void muestrasPorFechaDeCracionTest() {
+		
+		Usuario usuarioC = new Usuario("Pepe", false);
+		Usuario usuarioD = new Usuario("Lucas", false);
+		
+		usuarioC.crearMuestra("Chince Foliada", foto, ubicacion, recoleccion, zonas);
+		usuarioD.crearMuestra("Chince Foliada", foto, ubicacion, recoleccion, zonas);
+		
+		
+		
+		assertEquals(recoleccion.muestrasPorFechaDeCreacion(LocalDate.now().toString()).size(), 0);
+	}
+	
+	@Test
+	public void muestrasPorFechaDeUltimaVotacionTest() {
+		
+		Usuario usuarioC = new Usuario("Pepe", false);
+		Usuario usuarioD = new Usuario("Lucas", false);
+		
+		usuarioC.crearMuestra("Chince Foliada", foto, ubicacion, recoleccion, zonas);
+		usuarioD.crearMuestra("Chince Foliada", foto, ubicacion, recoleccion, zonas);
+		
+		
+		
+		assertEquals(recoleccion.muestrasPorFechaDeUltimaVotacion(LocalDate.now().toString()).size(), 0);
+	}
+	
+	
+	@Test
 	public void ANDtest() {
 		
 		muestraA = mock(Muestra.class);

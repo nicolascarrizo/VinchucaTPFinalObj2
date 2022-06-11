@@ -3,7 +3,6 @@ package vinchuca;
 public class Foto {
 	
 	private String link;
-	
 
 	public Foto() {
 		super();

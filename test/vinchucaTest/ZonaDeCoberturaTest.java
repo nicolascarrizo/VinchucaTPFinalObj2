@@ -82,16 +82,18 @@ public class ZonaDeCoberturaTest {
 	}
 	
 	@Test
-    public void testZonasSolapadas() {
+	public void testZonasSolapadas() {
+		
+		zonas = new Zonas();
+		epicentro2 = new Ubicacion(5, 1);
+		epicentro3 = new Ubicacion(30, 30);
+		zona2 = new ZonaDeCobertura("" , epicentro2, 2, zonas, recoleccion);
+		assertEquals(zona1.zonasSolapadas(zonas).size(), 1);
+		
+		zona3 = new ZonaDeCobertura("" , epicentro3, 3, zonas, recoleccion);
+		assertEquals(zona1.zonasSolapadas(zonas).size(), 1);
+	}
+	
 
-        zonas = new Zonas();
-        epicentro2 = new Ubicacion(5, 1);
-        epicentro3 = new Ubicacion(30, 30);
-        zona2 = new ZonaDeCobertura("" , epicentro2, 2, zonas, recoleccion);
-        assertEquals(zona1.zonasSolapadas(zonas).size(), 1);
-
-        zona3 = new ZonaDeCobertura("" , epicentro3, 3, zonas, recoleccion);
-        assertEquals(zona1.zonasSolapadas(zonas).size(), 1);
-    }
 }
 
