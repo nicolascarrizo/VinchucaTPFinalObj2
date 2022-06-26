@@ -16,6 +16,8 @@ Luis Salas - sc.luis93@gmail.com
  
 * Sacamos del PDF el strategy que no va. 
 
+* Se modifico UML con los nuevos cambios. El JPG se llama "VinchucaUMLTPFinal-Modificaciones" y se agregan test para la parte de Filtros
+
 * los JAR de mockito utilizados fueron los siguientes:
  
    - byte-buddy-1.10.18.jar
