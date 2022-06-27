@@ -164,6 +164,13 @@ public class Muestra {
 	public void setEstadoMuestra(EstadoMuestra estadoMuestra) {
 		this.estadoMuestra = estadoMuestra;
 	}
+	public List<Opinion> opinionesDeMuestra() {
+        return this.getOpiniones();
+    }
+
+	public Set<ZonaDeCobertura> zonasDeMuestra(){
+        return this.getZonas();
+	}
 	
 	
 	
